@@ -5,8 +5,9 @@
   padding: 10px;
   background: #fff;
   flex-grow: 5;
-  min-width: 350px;
+  /* min-width: 350px;
   min-height: 350px;
+  overflow: scroll; */
 }
 
 .card-block {

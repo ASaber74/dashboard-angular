@@ -11,10 +11,10 @@
 
 .container-pie {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   /* border: 1px solid #ddd; */
   /* border-radius: 4px; */
-  overflow: hidden;
+  overflow: scroll;
 }
 .card {
   border: 1px solid #ddd;

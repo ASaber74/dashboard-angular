@@ -61,4 +61,25 @@
       </table>
     </div>
   </jqxWindow>
+
+  <jqxWindow
+    #confirmWindow
+    [width]="300"
+    [height]="150"
+    [resizable]="false"
+    [isModal]="true"
+    [autoOpen]="false"
+    [modalOpacity]="0.3"
+  >
+    <div>Confirm Deletion</div>
+    <div style="overflow: hidden; text-align: center">
+      <p>Are you sure you want to delete this record?</p>
+      <jqxButton (onClick)="confirmDelete()" style="margin-right: 5px; cursor: pointer;">
+        Yes
+      </jqxButton>
+      <jqxButton (onClick)="cancelDelete()" style="margin-left: 5px; cursor: pointer;">
+        No
+      </jqxButton>
+    </div>
+  </jqxWindow>
 </div>

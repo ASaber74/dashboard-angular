@@ -1,3 +1,4 @@
+
 #main {
   padding-top: 7.2rem;
   display: -webkit-flex;
@@ -11,11 +12,31 @@
 .gridster {
   width: 100vw;
   height: 100vh;
-  /* background-color: #e5e9ec; */
   background-color: transparent;
 }
 
 .gridster gridster-item {
   background-color: transparent;
   height: auto;
+}
+
+.gridster.mobile .pie-charts {
+  height: 375px !important;
+}
+
+.gridster.mobile .app-quick {
+  height: 315px !important;
+}
+.gridster.mobile .app-performance {
+  height: 430px !important;
+}
+.gridster.mobile .app-ration {
+  height: 425px !important;
+}
+.gridster.mobile .app-real {
+  height: 300px  !important;
+  /* height: 295px !important; */
+}
+.gridster.mobile .app-daily {
+  height: 325px !important;
 }

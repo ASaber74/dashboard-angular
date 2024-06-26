@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -6,11 +6,14 @@ import * as Highcharts from 'highcharts';
   templateUrl: './ration-stock-chart.component.html',
   styleUrls: ['./ration-stock-chart.component.css'],
 })
-export class RationStockChartComponent {
+export class RationStockChartComponent implements AfterViewInit {
+  @ViewChild('chartContainer', { static: true }) chartContainer: ElementRef;
+  
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {
     chart: {
       type: 'area',
+      height: null, // Set the height dynamically
     },
     title: {
       text: 'Ration stock info',
@@ -108,4 +111,19 @@ export class RationStockChartComponent {
       ],
     },
   };
+
+  constructor() {}
+
+  ngAfterViewInit() {
+    this.setChartHeight();
+    window.addEventListener('resize', this.setChartHeight.bind(this));
+  }
+
+  setChartHeight() {
+    if (this.chartContainer && this.chartContainer.nativeElement) {
+      const cardHeight = this.chartContainer.nativeElement.offsetHeight;
+      this.chartOptions.chart.height = cardHeight;
+      this.Highcharts.chart('chartContainer', this.chartOptions);
+    }
+  }
 }

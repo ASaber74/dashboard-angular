@@ -15,7 +15,10 @@ export class UsersComponent implements OnInit {
   @ViewChild('name', { static: false }) name: jqxInputComponent;
   @ViewChild('address', { static: false }) address: jqxInputComponent;
   @ViewChild('email', { static: false }) email: jqxInputComponent;
+  @ViewChild('confirmWindow') confirmWindow: jqxWindowComponent;
+
   editrow: number = -1;
+  deleteRowIndex: number = -1;
 
   source: any = {
     localdata: [
@@ -65,19 +68,19 @@ export class UsersComponent implements OnInit {
         email: 'fatima.zayed@example.com',
       },
       {
-        "name": "Karim Fouad",
-        "address": "606 Willow Lane",
-        "email": "karim.fouad@example.com"
+        name: 'Karim Fouad',
+        address: '606 Willow Lane',
+        email: 'karim.fouad@example.com',
       },
       {
-        "name": "Dina Gamal",
-        "address": "707 Poplar Drive",
-        "email": "dina.gamal@example.com"
+        name: 'Dina Gamal',
+        address: '707 Poplar Drive',
+        email: 'dina.gamal@example.com',
       },
       {
-        "name": "Youssef Maher",
-        "address": "808 Fir Street",
-        "email": "youssef.maher@example.com"
+        name: 'Youssef Maher',
+        address: '808 Fir Street',
+        email: 'youssef.maher@example.com',
       },
     ],
     dataFields: [
@@ -134,8 +137,11 @@ export class UsersComponent implements OnInit {
         return 'Delete';
       },
       buttonclick: (rowIndex: number): void => {
-        let rowID = this.myGrid.getrowid(rowIndex);
-        this.myGrid.deleterow(rowID);
+        this.deleteRowIndex = rowIndex;
+        this.confirmWindow.position({ x: '50%', y: '30%' });
+        this.confirmWindow.open();
+        // let rowID = this.myGrid.getrowid(rowIndex);
+        // this.myGrid.deleterow(rowID);
       },
     },
   ];
@@ -162,6 +168,19 @@ export class UsersComponent implements OnInit {
   }
   cancelBtn(): void {
     this.myWindow.hide();
+  }
+
+  cancelDelete(): void {
+    this.confirmWindow.hide();
+    this.deleteRowIndex = -1;
+  }
+
+  confirmDelete(): void {
+    if (this.deleteRowIndex >= 0) {
+      let rowID = this.myGrid.getrowid(this.deleteRowIndex);
+      this.myGrid.deleterow(rowID);
+      this.confirmWindow.hide();
+    }
   }
 
   constructor() {}
